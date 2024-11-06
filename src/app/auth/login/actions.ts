@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export async function login(email: string, password: string) {
     const client = await createClient();
 
-    let { data } = await client
+    const { data } = await client
     .auth
     .signInWithPassword({
         email,
