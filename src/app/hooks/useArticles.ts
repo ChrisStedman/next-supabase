@@ -14,6 +14,10 @@ export const useArticles = () => {
         if (data) {
             setArticles(data)
         }
+
+        if(error) {
+            console.log(error)
+        }
     }
 
     return {
