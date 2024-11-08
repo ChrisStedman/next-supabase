@@ -30,7 +30,6 @@ export default function Home() {
     }
 
     if(data) {
-      console.log(data)
       setData(data)
     }
 
