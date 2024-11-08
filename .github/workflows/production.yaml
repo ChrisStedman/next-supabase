@@ -53,5 +53,8 @@ jobs:
         with:
           version: latest
 
-      - run: supabase link --project-ref $SUPABASE_PROJECT_ID
-      - run: supabase db push
+      - name: Establish link to supabase 
+        run: supabase link --project-ref $SUPABASE_PROJECT_ID <<< ""
+        
+      - name: Push migrations to supabase
+        run: supabase db push
