@@ -6,5 +6,5 @@ export interface Article {
     title: string;
     content: string;
     author?: string;
-    likes: Like[]
+    likes?: Like[]
 }
