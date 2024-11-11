@@ -12,5 +12,7 @@ export async function POST(req: Request) {
     messages,
   });
 
+  console.log("Chat result", result)
+
   return result.toDataStreamResponse();
 }
