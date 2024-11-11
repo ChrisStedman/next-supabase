@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { Views } from '@/types/views';
-import Button from './components/Button';
 import { useRouter } from 'next/navigation';
 
 
