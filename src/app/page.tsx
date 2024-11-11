@@ -39,14 +39,23 @@ export default function Home() {
     setNewView();
   }, []);
 
-  return (
+  return (    
     <div className='w-auto m-5'>
+      <ul className="flex">
+        <li className="mr-6">
+          <a className="text-blue-500 hover:text-blue-800" href="/articles">Articles</a>
+        </li>
+        <li className="mr-6">
+          <a className="text-blue-500 hover:text-blue-800" href="">Link</a>
+        </li>
+        <li className="mr-6">
+          <a className="text-blue-500 hover:text-blue-800" href="/chat">Chatbot</a>
+        </li>
+        <li className="mr-6">
+          <p className="text-blue-500 hover:text-blue-800" onClick={logout}>Logout</p>
+        </li>
+      </ul>
       <div>You are logged in</div>
-      <Button title="View articles" onClick={() => router.push("/articles")} className='w-1/5 m-2'/>
-
-      <div className='w-full justify-items-end' >
-      <Button title='Logout' onClick={logout} className='w-1/5 ' />
-      </div>
       <div className='w-full flex'>
       {data && data.map((view) => {
         return (
