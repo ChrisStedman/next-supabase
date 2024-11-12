@@ -7,8 +7,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-supabase:
     runs-on: ubuntu-latest
+    steps:
+        - uses: supabase/setup-cli@v1
+          with:
+            version: latest
+            
+        - name: initialise supabase
+          run: supabase init
+          
+        - name: start supabase
+          run: supabase db start
+  build-application:
+    runs-on: ubuntu-latest
+    needs: build-supabase
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54321'
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: '<NEXT_PUBLIC_SUPABASE_ANON_KEY>'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,6 +41,7 @@ jobs:
         run: npm run build
   migrate:
     runs-on: ubuntu-latest
+    needs: build-supabase
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_DB_PASSWORD: ${{ secrets.PRODUCTION_DB_PASSWORD }}
