@@ -42,7 +42,6 @@ export default function Home() {
   return (
     <div className='w-auto m-5'>
       <div>You are logged in</div>
-      <Button title="View articles" onClick={() => router.push("/articles")} className='w-1/5 m-2'/>
 
       <div className='w-full justify-items-end' >
       <Button title='Logout' onClick={logout} className='w-1/5 ' />
