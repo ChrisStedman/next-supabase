@@ -19,8 +19,7 @@ export const register = async (state: FormState, formData: FormData) => {
 
     const client = await createClient();
 
-
-    let { data } = await client
+    const { data } = await client
     .auth
     .signUp({
         email: String(formData.get('email')),

@@ -1,19 +1,15 @@
 'use client';
 
-import { createClient } from "@/utils/supabase/client";
-import { useRouter } from "next/navigation";
-
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { login } from "./actions";
 
 const Login = () => {
-    const router = useRouter()
     const [userData, setUserData] = useState({
         email: '',
         password: ''
     })
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setUserData({
             ...userData,
@@ -84,8 +80,8 @@ const Login = () => {
             </div>
   
             <p className="mt-10 text-center text-sm/6 text-gray-500">
-              Don't have an account?
-              <a href="/register" className="font-semibold text-indigo-600 hover:text-indigo-500 ml-1.5">
+              Don&#39;t have an account?
+              <a href="/auth/register" className="font-semibold text-indigo-600 hover:text-indigo-500 ml-1.5">
                 Register!
               </a>
             </p>
