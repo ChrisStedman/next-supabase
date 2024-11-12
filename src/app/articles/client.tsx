@@ -37,7 +37,7 @@ const ClientArticles = (
         <>
           {articles && articles.map((article) => {
             return (
-              <ArticleItem key={article.id} article={article} liked={article.likes[0]}/>
+              <ArticleItem key={article.id} article={article} liked={article.likes?.[0]}/>
           )})}
         </>
       );

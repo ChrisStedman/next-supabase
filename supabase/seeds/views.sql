@@ -1,6 +1,6 @@
-insert into
+INSERT INTO
 public.views (name)
-values
+VALUES
 ('Erlich Bachman'),
 ('Richard Hendricks'),
 ('Monica Hall');

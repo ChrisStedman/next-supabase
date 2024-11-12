@@ -12,11 +12,11 @@ const ArticleItem = (
     liked
   }: {
     article: Article,
-    liked: Like | null
+    liked: Like | undefined
   }) => {
 
   const supabaseClient = createClient();
-    const [like, setLike] = useState<Like | null>(liked)
+    const [like, setLike] = useState<Like | undefined>(liked)
 
     const saveLike = async () => {
       if(like) {
@@ -25,7 +25,7 @@ const ArticleItem = (
         .delete()
         .eq('id', like?.id)
 
-        setLike(null)
+        setLike(undefined)
       } else {
         const { data } = await supabaseClient
         .from('likes')
