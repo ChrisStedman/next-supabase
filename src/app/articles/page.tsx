@@ -11,6 +11,7 @@ export default async function Articles() {
                 .eq("likes.user_id", (await supabaseClient.auth.getUser()).data.user?.id)
                 .returns<Article[]>()
 
+                
   return (
     <div className='w-auto m-5'>
         <div className='w-auto flex flex-wrap flex-row'>
