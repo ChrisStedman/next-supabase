@@ -6,7 +6,7 @@ import { submitCreateIssue } from './actions';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Spinner from '@/app/components/Spinner';
 
-export default function Issues() {
+export default function NewIssue() {
   const [state, action, isPending] = useActionState(submitCreateIssue, undefined)
 
   return (
