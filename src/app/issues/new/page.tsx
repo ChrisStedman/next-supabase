@@ -2,10 +2,12 @@
 
 import { Button, Callout, TextArea, TextField } from '@radix-ui/themes'
 import React, { useActionState } from 'react'
-import { submit } from './actions';
+import { submitCreateIssue } from './actions';
+import ErrorMessage from '@/app/components/ErrorMessage';
+import Spinner from '@/app/components/Spinner';
 
-export default function page() {
-  const [state, action, isPending] = useActionState(submit, undefined)
+export default function Issues() {
+  const [state, action, isPending] = useActionState(submitCreateIssue, undefined)
 
   return (
     <div className='max-w-xl'>
@@ -16,10 +18,12 @@ export default function page() {
 
       <form action={action} className='space-y-3'>
           <TextField.Root name='title' placeholder="Title" />
-          {state?.errors?.title && <p className="text-red-500 mt-2">{state.errors.title}</p>}
+          <ErrorMessage>{state?.errors?.title}</ErrorMessage>
           <TextArea name='description' placeholder='Description' />
-          {state?.errors?.description && <p className="text-red-500 mt-2">{state.errors.description}</p>}
-          <Button type='submit' disabled={isPending}>Submit New Issue</Button>
+          <ErrorMessage>{state?.errors?.description}</ErrorMessage>
+          <Button type='submit' disabled={isPending}>
+            Submit New Issue {<Spinner displaySpinner={isPending} />}
+          </Button>
       </form>
     </div>
   )

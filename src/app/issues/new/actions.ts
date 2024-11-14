@@ -3,7 +3,7 @@ import { FormState } from "../issuesForm";
 import { createIssueSchema } from "@/schemas/IssueSchemas";
 
 
-export const submit = async (state: FormState, formData: FormData) => {
+export const submitCreateIssue = async (state: FormState, formData: FormData) => {
   const validatedFields = createIssueSchema.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),
@@ -25,7 +25,7 @@ export const submit = async (state: FormState, formData: FormData) => {
       description: formData.get('description')
     })
   })
-  
+
   if(data.ok) {
     redirect('/issues')
   }
