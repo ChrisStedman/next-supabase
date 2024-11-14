@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
     const client = await createClient();
 
-    const { data, error } = await client
+    const { data } = await client
     .from("issues")
     .insert({
         title: body.title,
@@ -23,9 +23,9 @@ export async function POST(request: NextRequest) {
     .select()
     .returns<Issue[]>()
 
-    if(error) {
-        return NextResponse.json({error}, { status: 400 })
+    if(data) {
+        return NextResponse.json(data?.[0], { status: 201 })
     }
 
-    return NextResponse.json(data?.[0], { status: 201 })
+    return NextResponse.json({description: "Insert failed"}, { status: 400 })
 }

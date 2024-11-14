@@ -25,7 +25,7 @@ export const submit = async (state: FormState, formData: FormData) => {
       description: formData.get('description')
     })
   })
-
+  
   if(data.ok) {
     redirect('/issues')
   }
