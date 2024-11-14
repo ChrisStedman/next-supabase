@@ -3,6 +3,7 @@ import { Button, Table } from '@radix-ui/themes'
 import Link from 'next/link'
 import React from 'react'
 import { getIssues } from '../lib/supabase/issues/Issues';
+import { IssueStatusBadge } from '../components/IssueStatusBadge';
 
 export default async function Issues() {
   const issues: Issue[] = await getIssues()
@@ -26,7 +27,7 @@ export default async function Issues() {
             {issues.map(issue => (
               <Table.Row key={issue.id}>
                 <Table.Cell>{issue.title}</Table.Cell>
-                <Table.Cell>{issue.status}</Table.Cell>
+                <Table.Cell><IssueStatusBadge status={issue.status} /></Table.Cell>
                 <Table.Cell>{new Date(issue.created_at).toLocaleString('en-AU')}</Table.Cell>
               </Table.Row>
             ))}
