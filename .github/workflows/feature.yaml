@@ -11,9 +11,6 @@ jobs:
     steps:
         - name: Checkout repository
           uses: actions/checkout@v4
-                            
-        - name: initialise supabase
-          run: npx supabase init
           
         - name: start supabase
           run: npx supabase db start
