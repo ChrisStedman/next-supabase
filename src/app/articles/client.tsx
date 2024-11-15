@@ -4,7 +4,8 @@ import { Article } from "@/types/articles";
 import { createClient } from "@/utils/supabase/client";
 import { RealtimePostgresChangesPayload } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
-import ArticleItem from "../components/ArticleItem";
+import { ArticleItem } from "../components";
+
 
 const ClientArticles = (
     {

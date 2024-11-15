@@ -2,9 +2,8 @@ import { Issue } from '@/types/issues';
 import { Table } from '@radix-ui/themes'
 import React from 'react'
 import { getIssues } from '../lib/supabase/issues/Issues';
-import { IssueStatusBadge } from '../components/IssueStatusBadge';
 import IssuesToolbar from './IssuesToolbar';
-import { Link } from '../components/Link';
+import { IssueStatusBadge, Link } from '../components';
 
 export default async function Issues() {
   const issues: Issue[] = await getIssues()

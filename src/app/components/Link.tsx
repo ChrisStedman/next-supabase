@@ -10,10 +10,12 @@ interface Props {
     Composition of links required to enable themed styling, without forcing a full page reload when clicked
 */
  
-export const Link = ({href, children}: Props) => {
+const Link = ({href, children}: Props) => {
   return (
     <NextLink href={href} passHref legacyBehavior>
         <RadixLink>{children}</RadixLink>
     </NextLink>
   )
 }
+
+export default Link

@@ -3,8 +3,8 @@
 import { Button, Callout, TextArea, TextField } from '@radix-ui/themes'
 import React, { useActionState } from 'react'
 import { submitCreateIssue } from './actions';
-import ErrorMessage from '@/app/components/ErrorMessage';
-import Spinner from '@/app/components/Spinner';
+import { ErrorMessage, Spinner } from '@/app/components';
+
 
 export default function NewIssue() {
   const [state, action, isPending] = useActionState(submitCreateIssue, undefined)

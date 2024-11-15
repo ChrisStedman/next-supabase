@@ -1,4 +1,4 @@
-import { IssueStatusBadge } from '@/app/components/IssueStatusBadge'
+import { IssueStatusBadge } from '@/app/components'
 import { getIssue } from '@/app/lib/supabase/issues/Issues'
 import { Card, Heading, Text } from '@radix-ui/themes'
 import { notFound } from 'next/navigation'

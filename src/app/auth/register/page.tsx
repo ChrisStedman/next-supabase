@@ -1,8 +1,7 @@
 'use client';
 
+import { Button, FormInput } from "@/app/components";
 import { register } from "./actions";
-import Button from "@/app/components/Button";
-import FormInput from "@/app/components/FormInput";
 import { useActionState } from "react";
 
 const Register = () => {
@@ -43,7 +42,6 @@ const Register = () => {
               )}
               </div>
 
-  
               <div>
                 <Button title="Register" />
               </div>
