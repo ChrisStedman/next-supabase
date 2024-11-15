@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
-import { FormState } from "../issuesForm";
+import { IssueFormState } from "../issuesFormState";
 import { createIssueSchema } from "@/schemas/IssueSchemas";
 
 
-export const submitCreateIssue = async (state: FormState, formData: FormData) => {
+export const submitCreateIssue = async (state: IssueFormState, formData: FormData) => {
   const validatedFields = createIssueSchema.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),
