@@ -1,6 +1,8 @@
 import { IssueStatusBadge } from '@/app/components'
+import { IconEdit } from '@/app/components/icons/Edit'
 import { getIssue } from '@/app/lib/supabase/issues/Issues'
-import { Card, Heading, Text } from '@radix-ui/themes'
+import { Box, Button, Card, Grid, Heading, Text } from '@radix-ui/themes'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -15,7 +17,8 @@ export default async  function IssueDetailPage(props: {params: Params}) {
     }
 
     return (
-        <div>
+        <Grid columns='2' gap='5'>
+            <Box>
             <div className='flex gap-3 my-2 items-center'>
                 <Heading>{issue.title}</Heading>
                 <IssueStatusBadge status={issue.status} />
@@ -27,6 +30,13 @@ export default async  function IssueDetailPage(props: {params: Params}) {
             <Card className='max-w-xl'>
                 <p>{issue.description}</p>
             </Card>
-        </div>
+            </Box>
+            <Box>
+                <Button>
+                    <IconEdit />
+                    <Link href={`/issues/${issue.id}/edit`}>Edit Issue</Link>
+                </Button>
+            </Box>
+        </Grid>
     )
 }
