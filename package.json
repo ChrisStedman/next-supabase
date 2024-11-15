@@ -10,6 +10,7 @@
     "dev-exp": "next dev --experimental-https"
   },
   "dependencies": {
+    "@radix-ui/themes": "^3.1.6",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.46.1",
     "next": "^15.0.2",
