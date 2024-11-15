@@ -11,10 +11,11 @@ export default function NewIssue() {
 
   return (
     <div className='max-w-xl'>
-    {state?.serverError &&      
-        <Callout.Root color='red' className='mb-5'>
-          <Callout.Text>{state.serverError}</Callout.Text>
-        </Callout.Root>}
+      {state?.serverError &&      
+          <Callout.Root color='red' className='mb-5'>
+            <Callout.Text>{state.serverError}</Callout.Text>
+          </Callout.Root>
+      }
 
       <form action={action} className='space-y-3'>
           <TextField.Root name='title' placeholder="Title" />
