@@ -1,5 +1,5 @@
 import { Issue } from '@/types/issues';
-import { Button, Table } from '@radix-ui/themes'
+import { Table } from '@radix-ui/themes'
 import Link from 'next/link'
 import React from 'react'
 import { getIssues } from '../lib/supabase/issues/Issues';
@@ -23,7 +23,8 @@ export default async function Issues() {
         <Table.Body>
           {issues.map(issue => (
             <Table.Row key={issue.id}>
-              <Table.Cell>{issue.title}</Table.Cell>
+              <Table.Cell>
+                <Link href={`/issues/${issue.id}`}>{issue.title}</Link></Table.Cell>
               <Table.Cell><IssueStatusBadge status={issue.status} /></Table.Cell>
               <Table.Cell>{new Date(issue.created_at).toLocaleString('en-AU')}</Table.Cell>
             </Table.Row>

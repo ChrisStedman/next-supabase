@@ -17,3 +17,20 @@ export const getIssues = async () => {
 
     return data
 }
+
+export const getIssue = async (id: number) => {
+    const client = await createClient();
+
+    const { data, error } = await client
+    .from("issues")
+    .select()
+    .eq('id', id)
+    .limit(1)
+    .returns<Issue[]>()
+
+    if(error) {
+        console.log(error)
+    }
+
+    return data?.length === 1 ?  data[0] : null
+}
