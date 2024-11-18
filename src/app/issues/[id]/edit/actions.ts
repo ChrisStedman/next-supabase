@@ -17,7 +17,8 @@ export const submitEditIssue = async (state: IssueFormState, formData: FormData)
   }
 
   const data = await fetch(`/api/issues/${formData.get('id')}`, {
-    method: 'PUT',
+    cache: 'no-store',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },

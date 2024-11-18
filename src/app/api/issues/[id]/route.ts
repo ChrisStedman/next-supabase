@@ -1,5 +1,5 @@
 import { getIssue, updateIssue } from "@/app/lib/supabase/issues/Issues";
-import { createIssueSchema } from "@/schemas/IssueSchemas";
+import { issueSchema } from "@/schemas/IssueSchemas";
 import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,7 +21,7 @@ export async function GET(
     return NextResponse.json(issue)
 }
 
-export async function PUT(
+export async function PATCH(
     request: NextRequest,
     { params }: { params: Promise<{ id: string }> }) {
     const id = Number((await params).id)
@@ -31,7 +31,7 @@ export async function PUT(
     }
 
     const body = await request.json()
-    const validation = createIssueSchema.safeParse(body)
+    const validation = issueSchema.safeParse(body)
 
     if(!validation.success) {
         return NextResponse.json(validation.error.errors, {status: 400})
@@ -44,6 +44,7 @@ export async function PUT(
     })
 
     if(!issue) {
+        return NextResponse.json({error: "Issue not found"}, { status: 404})
         notFound()
     }
 
