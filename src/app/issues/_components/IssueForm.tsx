@@ -5,10 +5,11 @@ import React, { useActionState } from 'react'
 import { ErrorMessage, Spinner } from '@/app/components';
 import { IssueFormState } from '../issuesFormState';
 import { Issue } from '@/types/issues';
+import { ValidationError } from '@/types/validationError';
 
 interface Props {
   issue? : Issue,
-  actionParam : (state: IssueFormState, formData: FormData) => any
+  actionParam : (state: IssueFormState, formData: FormData) => Promise<ValidationError>
 }
 
 export default function IssueForm({ issue, actionParam } : Props) {
