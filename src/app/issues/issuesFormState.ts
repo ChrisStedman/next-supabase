@@ -1,4 +1,4 @@
-export type FormState =
+export type IssueFormState =
   | {
       errors?: {
         title?: string[]

@@ -1,31 +1,20 @@
 'use client';
 
-import { Button, Callout, TextArea, TextField } from '@radix-ui/themes'
-import React, { useActionState } from 'react'
+import IssueFormSkeleton from '../_components/IssueFormSkeleton';
 import { submitCreateIssue } from './actions';
-import { ErrorMessage, Spinner } from '@/app/components';
+import dynamic from 'next/dynamic';
+
+// Not needed here, but demonstrates how to force dynamic loading of entire page to prevent component 'pop-in'
+const IssueForm = dynamic(
+  () => import('@/app/issues/_components/IssueForm'),
+  { ssr: false,
+    loading: () => <IssueFormSkeleton />
+   }
+)
 
 
-export default function NewIssue() {
-  const [state, action, isPending] = useActionState(submitCreateIssue, undefined)
-
+export default function NewIssuePage() {
   return (
-    <div className='max-w-xl'>
-      {state?.serverError &&      
-          <Callout.Root color='red' className='mb-5'>
-            <Callout.Text>{state.serverError}</Callout.Text>
-          </Callout.Root>
-      }
-
-      <form action={action} className='space-y-3'>
-          <TextField.Root name='title' placeholder="Title" />
-          <ErrorMessage>{state?.errors?.title}</ErrorMessage>
-          <TextArea name='description' placeholder='Description' />
-          <ErrorMessage>{state?.errors?.description}</ErrorMessage>
-          <Button type='submit' disabled={isPending}>
-            Submit New Issue {<Spinner displaySpinner={isPending} />}
-          </Button>
-      </form>
-    </div>
+    <IssueForm actionParam={submitCreateIssue} />
   )
 }

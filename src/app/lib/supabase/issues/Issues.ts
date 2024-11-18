@@ -34,3 +34,20 @@ export const getIssue = async (id: number) => {
 
     return data?.length === 1 ?  data[0] : null
 }
+
+export const updateIssue = async (issue: {id: number, title: string, description: string}) => {
+    const client = await createClient();
+
+    const { data, error } = await client
+    .from("issues")
+    .update(issue)
+    .eq('id', issue.id)
+    .select()
+    .returns<Issue[]>()
+
+    if(error) {
+        console.log(error)
+    }
+
+    return data?.length === 1 ?  data[0] : null
+}

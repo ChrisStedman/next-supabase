@@ -5,7 +5,7 @@ import { getIssues } from '../lib/supabase/issues/Issues';
 import IssuesToolbar from './IssuesToolbar';
 import { IssueStatusBadge, Link } from '../components';
 
-export default async function Issues() {
+export default async function IssuesPage() {
   const issues: Issue[] = await getIssues()
 
   return (

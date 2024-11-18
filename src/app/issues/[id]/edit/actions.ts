@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation";
-import { IssueFormState } from "../issuesFormState";
-import { issueSchema } from "@/schemas/IssueSchemas";
-import { ValidationError } from "@/types/validationError";
+import { IssueFormState } from "../../issuesFormState";
+import { editIssueSchema } from "@/schemas/IssueSchemas";
 
 
-export const submitCreateIssue = async (state: IssueFormState, formData: FormData): Promise<ValidationError> => {
-  const validatedFields = issueSchema.safeParse({
+export const submitEditIssue = async (state: IssueFormState, formData: FormData) => {
+  const validatedFields = editIssueSchema.safeParse({
+    id: Number(formData.get('id')),
     title: formData.get('title'),
     description: formData.get('description'),
   })
@@ -16,9 +16,9 @@ export const submitCreateIssue = async (state: IssueFormState, formData: FormDat
       }
   }
 
-  const data = await fetch('/api/issues', {
+  const data = await fetch(`/api/issues/${formData.get('id')}`, {
     cache: 'no-store',
-    method: 'POST',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },
