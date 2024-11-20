@@ -51,3 +51,20 @@ export const updateIssue = async (issue: {id: number, title: string, description
 
     return data?.length === 1 ?  data[0] : null
 }
+
+export const deleteIssue = async (id: number) => {
+    const client = await createClient();
+
+    const { data, error } = await client
+    .from("issues")
+    .delete()
+    .eq('id', id)
+    .select()
+    .returns<Issue[]>()
+
+    if(error) {
+        console.log(error)
+    }
+
+    return data?.[0] ?? null
+}
