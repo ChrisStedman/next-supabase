@@ -13,7 +13,7 @@ export default function IssueDetails({issue} : {issue: Issue}) {
             <Text size="2">Created: {new Date(issue.created_at).toLocaleString('en-AU')}</Text>
             <Text size="2">Updated: { issue.updated_at ?  new Date(issue.updated_at).toLocaleString('en-AU') : '-' }</Text>
         </div>
-        <Card className='max-w-xl'>
+        <Card className='prose max-w-full'>
             <p>{issue.description}</p>
         </Card>
     </>
