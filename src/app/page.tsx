@@ -37,7 +37,7 @@ export default function Home() {
 
   useEffect(() => {
     setNewView();
-  }, []);
+  }, [setNewView]);
 
   return (
     <div className='w-auto m-5'>

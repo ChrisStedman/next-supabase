@@ -4,26 +4,30 @@ import { IconBin } from '@/app/components/icons/Bin'
 import { AlertDialog, Button, Flex } from '@radix-ui/themes'
 import { deleteIssue } from './actions';
 import { useState } from 'react';
+import { Spinner } from '@/app/components';
 
 
 export const DeleteIssueButton = ({issueId}: {issueId: number}) => {
   const [error, setError] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const handleDeleteIssue = async () => {
+    setIsDeleting(true)
     const error = await deleteIssue(issueId);
 
     if(error) {
       setError(true)
     }
+    setIsDeleting(false)
   }
 
   return (
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color='red'>
+          <Button color='red'  disabled={isDeleting}>
               Delete Issue
-              <IconBin />
+              {isDeleting ? <Spinner displaySpinner={isDeleting} /> : <IconBin /> }
           </Button>
         </AlertDialog.Trigger>
         <AlertDialog.Content>
@@ -36,7 +40,9 @@ export const DeleteIssueButton = ({issueId}: {issueId: number}) => {
               <Button variant='soft' color='gray'>Cancel</Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
-              <Button color='red' onClick={handleDeleteIssue}>Delete Issue</Button>
+              <Button color='red' onClick={handleDeleteIssue}>
+                Delete Issue
+              </Button>
             </AlertDialog.Action>
           </Flex>
         </AlertDialog.Content>
