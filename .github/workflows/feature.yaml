@@ -20,7 +20,7 @@ jobs:
           run: supabase db start
   build-application:
     runs-on: ubuntu-latest
-    if: contains(github.ref, "main")
+    if: success() && github.ref == 'refs/head/main'
     needs: build-supabase
     env:
       NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54321'
