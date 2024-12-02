@@ -6,6 +6,22 @@ on:
       - main
 
 jobs:
+test-workflow:
+  name: Migrate Supabase
+  runs-on: ubuntu-latest
+  needs: supabase-test
+  environment: development
+  env:
+    MY_SECRET: ${{ secrets.MY_SECRET }}
+
+  steps:
+    - name: Print a message
+      run: echo "Hello, this is a message from the GitHub Actions job!"
+
+    - name: Print environment variables
+      run: |
+        echo "MY_SECRET: $MY_SECRET"
+
   build-supabase:
     runs-on: ubuntu-latest
     steps:
