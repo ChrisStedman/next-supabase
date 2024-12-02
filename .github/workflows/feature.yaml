@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     env:
-      MY_SECRET: ${{ secrets.MY_SECRET }}
+      MY_SECRET: ${{ secrets.ABCD }}
 
     steps:
       - name: Print a message
