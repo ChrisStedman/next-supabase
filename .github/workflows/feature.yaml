@@ -6,6 +6,21 @@ on:
       - main
 
 jobs:
+  test-workflow:
+    name: Migrate Supabase
+    runs-on: ubuntu-latest
+    environment: development
+    env:
+      MY_SECRET: ${{ secrets.ABCD }}
+
+    steps:
+      - name: Print a message
+        run: echo "Hello, this is a message from the GitHub Actions job!"
+
+      - name: Print environment variables
+        run: |
+          echo "MY_SECRET: $MY_SECRET"
+
   build-supabase:
     runs-on: ubuntu-latest
     steps:
@@ -20,6 +35,7 @@ jobs:
           run: supabase db start
   build-application:
     runs-on: ubuntu-latest
+    if: success() && github.ref == 'refs/head/main'
     needs: build-supabase
     env:
       NEXT_PUBLIC_SUPABASE_URL: 'http://127.0.0.1:54321'
